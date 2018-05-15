@@ -12,9 +12,22 @@ AUTHOR = CHATTERBOT.__author__
 AUTHOR_EMAIL = CHATTERBOT.__email__
 URL = CHATTERBOT.__url__
 DESCRIPTION = CHATTERBOT.__doc__
+LONG_DESCRIPTION = '''
+ChatterBot
+==========
 
-with open('README.md') as f:
-    LONG_DESCRIPTION = f.read()
+ChatterBot is a machine-learning based conversational dialog engine build in
+Python which makes it possible to generate responses based on collections of
+known conversations. The language independent design of ChatterBot allows it
+to be trained to speak any language.
+
+An example of typical input would be something like this:
+
+    | **user:** Good morning! How are you doing?
+    | **bot:** I am doing very well, thank you for asking.
+    | **user:** You're welcome.
+    | **bot:** Do you like hats?
+'''
 
 with open('requirements.txt') as requirements:
     REQUIREMENTS = requirements.readlines()
@@ -24,12 +37,8 @@ setup(
     version=VERSION,
     url=URL,
     download_url='{}/tarball/{}'.format(URL, VERSION),
-    project_urls={
-        'Documentation': 'https://chatterbot.readthedocs.io',
-    },
     description=DESCRIPTION,
     long_description=LONG_DESCRIPTION,
-    long_description_content_type='text/markdown',
     author=AUTHOR,
     author_email=AUTHOR_EMAIL,
     packages=[
@@ -48,7 +57,6 @@ setup(
     package_dir={'chatterbot': 'chatterbot'},
     include_package_data=True,
     install_requires=REQUIREMENTS,
-    python_requires='>=2.7, <4',
     license='BSD',
     zip_safe=True,
     platforms=['any'],

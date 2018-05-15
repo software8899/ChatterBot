@@ -13,7 +13,7 @@ SECRET_KEY = 'fsch+6!=q+@ol&%0x!nwdl@48^ixbd4clx5f1i!5n^66y+pmn*'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -36,7 +36,9 @@ CHATTERBOT = {
     'name': 'Django ChatterBot Example',
     'trainer': 'chatterbot.trainers.ChatterBotCorpusTrainer',
     'training_data': [
-        'chatterbot.corpus.english.greetings'
+        #'chatterbot.corpus.english.greetings',
+        'D:/chatterbot_corpus/data/chinese',
+        #'D:/chatterbot_corpus/data/other-copus'
     ],
     'django_app_name': 'django_chatterbot'
 }
@@ -75,14 +77,44 @@ WSGI_APPLICATION = 'example_app.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
 
+#DATABASES = {
+#    'default': {
+#        'ENGINE': 'django.db.backends.sqlite3',
+#        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#    }
+#}
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+ 'default': {
+    'ENGINE': 'django.db.backends.mysql',
+    'NAME': 'chatter_bot',
+    'USER':'chatbot',
+#   'HOST': '192.168.1.192',
+    'HOST': '192.168.100.90',
+    'PASSWORD':'chatbot',
+    'PORT': '3306',
+    'CHARSET':'utf8',
     }
 }
 
 
+# Password validation
+# https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators
+
+AUTH_PASSWORD_VALIDATORS = [
+    {
+        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+    },
+    {
+        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+    },
+    {
+        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+    },
+    {
+        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+    },
+]
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
 
@@ -108,3 +140,6 @@ STATICFILES_DIRS = (
         'static',
     ),
 )
+
+
+SILENCED_SYSTEM_CHECKS = ['mysql.E001']
